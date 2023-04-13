@@ -1,0 +1,70 @@
+# Ansible Collection - {{ namespace }}.{{ collection_name }}
+
+Collection where is collected all the functionality related with {{ namespace }} in {{ collection_name | upper }}.
+
+You can check the version changes in the [changelog](./CHANGELOG.md). More info about the collection in [galaxy file](./galaxy.yml).
+
+## Inventory
+
+[Instructions to create inventories](./inventory/README.md)
+
+## Playbooks
+
+[Instructions to run playbooks](./playbooks/README.md)
+
+## Roles
+
+[Instructions to create new roles](./roles/README.md)
+
+## More documentation
+
+[Documentation about collection](./docs/README.md)
+
+# Create new collection using skeleton
+
+1. Clone this repo
+
+2. Create a feature branch in the repository where you want to create the new collection
+   ```
+   git checkout -b feature/new-collection-$collection_name
+   ```
+
+3. From the directory/repository where you want to create the new collection, launch next command changing the value of **iaac_environment_path** to create new collection:
+   ```
+   ansible-galaxy collection init $collection_namespace.$collection_name --collection-skeleton ${iaac_environment_path}/ansible-collection-skeleton
+   ```
+
+4. A new folder ```$collection_namespace/$collection_name``` will be created where the new collection playbooks, roles, etc. will be generated.
+
+5. Once the new collection has been tested in feature branch, consider to merge to the main branch.
+
+
+# Install an ansible collection in a workspace
+
+One way for installing an ansible collection in a workspace is following these steps:
+1. Download tar.gz from collections repository.
+
+2. Configure your ansible.cfg to define ansible collections_paths variable. Add the following to ansible.cfg file:
+   ```
+   collections_paths = ./collections
+   ```
+
+3. Install collection with ansible-galaxy:
+   ```
+   ansible-galaxy collection install operational_tasks-1.0.0-develop-20230201.01.gz
+   ```
+
+Now you can use the ansible collection already installed as it is described in official documentation: [Using collections](https://docs.ansible.com/ansible/latest/user_guide/collections_using.html)
+
+# Install an ansible collection dependencies in a workspace
+
+One way for installing an ansible collection dependencias in a workspace is executing next command:
+
+1. ansible-galaxy collection install -r collection_dependencies.yml -p collections -vvv
+
+
+# Ansible Collections official documentation
+
+You can learn other ways for installing an ansible collection in: [Using collections](https://docs.ansible.com/ansible/latest/user_guide/collections_using.html)
+
+The official Ansible documentation for creating new collections: [Developing collections](https://docs.ansible.com/ansible/latest/dev_guide/developing_collections.html)

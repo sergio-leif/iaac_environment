@@ -1,0 +1,7 @@
+ansible
+pip
+pywinrm
+packaging
+requests[security]
+xmltodict
+# More packages needed
